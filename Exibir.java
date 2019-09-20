@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Atividade2;
+package at3.parte2;
 
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 
@@ -14,29 +15,35 @@ import javax.swing.JOptionPane;
  */
 public class Exibir 
 {    
-    public void aluno(DAO d)
+    public void professor(Professor p )
     {
-        Aluno aluno = new Aluno();
-        aluno.setNome(JOptionPane.showInputDialog("Entre com o nome: "));
-        aluno.setIdade(JOptionPane.showInputDialog("Entre com a idade: "));
-        aluno.setCpf(JOptionPane.showInputDialog("Entre com o CPF: "));
-        aluno.setRa("123");//(JOptionPane.showInputDialog("Entre com a RA: "));
-        aluno.setSexo(JOptionPane.showInputDialog("Entre com o sexo: "));
-        JOptionPane.showMessageDialog(null,"Aluno salvo com Sucesso! ");
-        
-        d.salvarNoBD();
+        p.setNome(JOptionPane.showInputDialog("Entre com o nome: \n"));
+        p.setIdade(JOptionPane.showInputDialog("Entre com a idade: "));
+        p.setCpf(JOptionPane.showInputDialog("Entre com o CPF: "));
+        p.setSiape(JOptionPane.showInputDialog("Entre com o SIAPE: "));
+        p.setSexo(JOptionPane.showInputDialog("Entre com o sexo: "));
     }
-    public void professor(DAO d)
+    public void aluno(Aluno a) throws SQLException
     {
-        Professor professor = new Professor();
-        professor.setNome(JOptionPane.showInputDialog("Entre com o nome: "));
-        professor.setIdade(JOptionPane.showInputDialog("Entre com a idade: "));
-        professor.setCpf(JOptionPane.showInputDialog("Entre com o CPF: "));
-        professor.setSiape("123");//(JOptionPane.showInputDialog("Entre com o SIAPE: "));
-        professor.setSexo(JOptionPane.showInputDialog("Entre com o sexo: "));
-        JOptionPane.showMessageDialog(null, "Professor salvo com Sucesso! "); 
-        
-        d.salvar(professor);
+        a.setNome(JOptionPane.showInputDialog("Entre com o nome: "));
+        a.setIdade(JOptionPane.showInputDialog("Entre com a idade: "));
+        a.setCpf(JOptionPane.showInputDialog("Entre com o CPF: "));
+        a.setRa(JOptionPane.showInputDialog("Entre com a RA: "));
+        a.setSexo(JOptionPane.showInputDialog("Entre com o sexo: "));
+    }    
+    public String nome()
+    {
+        String nome = JOptionPane.showInputDialog("Digite o nome: ");
+        return nome;
     }
-   
+    public int op()
+    {
+        int op = Integer.parseInt(JOptionPane.showInputDialog("1 - Professor\n 2 - Aluno"));
+        return op;
+    }
+    public String Cpf()
+    {
+        String excluir = JOptionPane.showInputDialog("Digite o CPF: ");
+        return excluir;
+    }
 }

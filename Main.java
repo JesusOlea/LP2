@@ -1,5 +1,7 @@
-package Atividade2;
+package at3.parte2;
 
+
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -8,61 +10,45 @@ import javax.swing.JOptionPane;
  */
 public class Main 
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws SQLException
     {
-        boolean op1 = true;
+       int op1 = -1;
         Exibir e = new Exibir();
         DAO d = new DAO();
-        d.ler();
-        while(op1)
+        
+        while(op1 !=0)
         {
-            String opcao = JOptionPane.showInputDialog("1 - Salvar \n 2 - Buscar Todos \n 3 - Remover \n 0 - Sair");
+            String opcao = JOptionPane.showInputDialog("1 - Salvar \n 2 - Buscar \n 3 - Remover \n 4 - Alterar \n 0 - Sair");
             switch (opcao)
             {
                 case "1":
                 {
-                    String op = JOptionPane.showInputDialog(" 1 - Aluno \n 2 - Professor \n 0 - Sair ");
-                    switch (op)
-                    {
-                        
-                        case "1":
-                        {
-                           e.aluno(d);
-                        }
-                        break;
-                        case "2":
-                        {
-                            e.professor(d);
-                        }
-                        break;
-                        case "0":
-                        {
-                            JOptionPane.showMessageDialog(null, "Saindo");
-
-                        } break;  
-                    default:
-                    JOptionPane.showMessageDialog(null, "opção incorreta");
-                    }
+                    d.gravarPessoa(op1);
                 }
                 break;
                 case "2":
                 {
-                    String op = JOptionPane.showInputDialog(" 1 - Aluno \n 2 - Professor \n 0 - Sair ");
+                    String op = JOptionPane.showInputDialog(" 1 - Professor \n 2 - Aluno \n 3 - Buscar Todos\n 0 - Voltar ");
                     switch (op)
                     {
                         case "1":
                         {
-                            d.buscarA();
+                            d.buscarP();
                         }
                         break;
                         case "2":
                         {
-                            d.buscarP();
+                            d.buscarA();
+                        }
+                        break;
+                        case "3":
+                        {
+                            d.buscarT();
                         }
                         break;
                         case "0":
                         {
-                            JOptionPane.showMessageDialog(null, "Saindo");
+                            JOptionPane.showMessageDialog(null, "Voltar");
                         }
                         break;
                         default:
@@ -71,22 +57,24 @@ public class Main
                 }
                 break;
                 case "3":
-                    String cpf = JOptionPane.showInputDialog("Digite o CPF da pessoa");
-                    d.excluirA(cpf);
-                    
-                    break;
+                {
+                    d.excluirCpf(e.op());
+                }
+                break;
+                case "4":
+                {
+                    d.alterar(e.op());
+                }
+                break;
                 case "0":
                 {
-                    op1 = false;
                     JOptionPane.showMessageDialog(null, "Saindo");
-                    d.gravar();
+                   op1 = 0;
                 }
                     break;
                     default:
                     JOptionPane.showMessageDialog(null, "opção incorreta");
             }
-            
         }
-        
     }
 }
